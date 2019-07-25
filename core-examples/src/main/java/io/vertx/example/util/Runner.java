@@ -21,29 +21,39 @@ public class Runner {
   private static final String CORE_EXAMPLES_KOTLIN_DIR = CORE_EXAMPLES_DIR + "/src/main/kotlin/";
 
   public static void runClusteredExample(Class clazz) {
-    runExample(CORE_EXAMPLES_JAVA_DIR, clazz, new VertxOptions().setClustered(true), null);
+    VertxOptions vertxOptions = new VertxOptions();
+    vertxOptions.getEventBusOptions().setClustered(true);
+    runExample(CORE_EXAMPLES_JAVA_DIR, clazz, vertxOptions, null);
   }
 
   public static void runClusteredExample(Class clazz, VertxOptions options) {
-    runExample(CORE_EXAMPLES_JAVA_DIR, clazz, options.setClustered(true), null);
+    options.getEventBusOptions().setClustered(true);
+    runExample(CORE_EXAMPLES_JAVA_DIR, clazz, options, null);
   }
 
   public static void runExample(Class clazz) {
-    runExample(CORE_EXAMPLES_JAVA_DIR, clazz, new VertxOptions().setClustered(false), null);
+    VertxOptions vertxOptions = new VertxOptions();
+    vertxOptions.getEventBusOptions().setClustered(false);
+    runExample(CORE_EXAMPLES_JAVA_DIR, clazz, vertxOptions, null);
   }
 
   public static void runExample(Class clazz, DeploymentOptions options) {
-    runExample(CORE_EXAMPLES_JAVA_DIR, clazz, new VertxOptions().setClustered(false), options);
+    VertxOptions vertxOptions = new VertxOptions();
+    vertxOptions.getEventBusOptions().setClustered(false);
+    runExample(CORE_EXAMPLES_JAVA_DIR, clazz, vertxOptions, options);
   }
 
   // JavaScript examples
-
   public static void runJSExample(String scriptName) {
-    runScriptExample(CORE_EXAMPLES_JS_DIR, scriptName, new VertxOptions().setClustered(false));
+    VertxOptions vertxOptions = new VertxOptions();
+    vertxOptions.getEventBusOptions().setClustered(false);
+    runScriptExample(CORE_EXAMPLES_JS_DIR, scriptName, vertxOptions);
   }
 
   public static void runJSExampleClustered(String scriptName) {
-    runScriptExample(CORE_EXAMPLES_JS_DIR, scriptName, new VertxOptions().setClustered(true));
+    VertxOptions vertxOptions = new VertxOptions();
+    vertxOptions.getEventBusOptions().setClustered(false);
+    runScriptExample(CORE_EXAMPLES_JS_DIR, scriptName, vertxOptions);
   }
 
   static class JSEchoServerRunner {
@@ -564,7 +574,7 @@ public class Runner {
         t.printStackTrace();
       }
     };
-    if (options.isClustered()) {
+    if (options.getEventBusOptions().isClustered()) {
       Vertx.clusteredVertx(options, res -> {
         if (res.succeeded()) {
           Vertx vertx = res.result();
