@@ -10,7 +10,7 @@
 
   <packaging>pom</packaging>
 
-  <version>3.7.1</version>
+  <version>3.8.4</version>
 
   <modules>
     <module>maven-simplest</module>
@@ -32,6 +32,7 @@
     <module>consul-examples</module>
     <module>mongo-examples</module>
     <module>jdbc-examples</module>
+    <module>reactive-sql-client-examples</module>
     <module>jca-examples</module>
     <module>sync-examples</module>
     <module>shell-examples</module>
@@ -90,7 +91,7 @@
       <repositories>
         <repository>
           <id>staging</id>
-          <url>https://oss.sonatype.org/content/repositories/iovertx-3831/</url>
+          <url>https://oss.sonatype.org/content/repositories/iovertx-3858/</url>
         </repository>
       </repositories>
     </profile>
